@@ -3,7 +3,7 @@
 
 Name:       %{reponame}-%{repoversion}-appstream-data
 Version:    27
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Appstream metadata for the RPM Fusion nonfree repository
 BuildArch:  noarch
 
@@ -12,7 +12,7 @@ URL:        http://rpmfusion.org
 
 Source0:    %{reponame}-%{repoversion}-%{version}.xml.gz
 Source1:    %{reponame}-%{repoversion}-%{version}-icons.tar.gz
-Source2:    update-appdata-rpmfusion-free.sh
+Source2:    update-appdata-rpmfusion-nonfree.sh
 
 BuildRequires:  libappstream-glib
 Supplements:    appstream-data
@@ -39,6 +39,9 @@ DESTDIR=%{buildroot} appstream-util install %{SOURCE0} %{SOURCE1}
 %dir %{_datadir}/app-info/xmls
 
 %changelog
+* Mon Nov 13 2017 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 27-2
+- correct script name
+
 * Mon Nov 13 2017 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 27-1
 - update appdata
 
