@@ -2,29 +2,17 @@
 %global     repoversion nonfree
 
 Name:       %{reponame}-%{repoversion}-appstream-data
-Version:    26
-Release:    2%{?dist}
+Version:    28
+Release:    1%{?dist}
 Summary:    Appstream metadata for the RPM Fusion nonfree repository
 BuildArch:  noarch
 
 License:    CC0
 URL:        http://rpmfusion.org
 
-# mkdir rpmfusion-free
-
-# cd rpmfusion-free
-# rsync -avPh rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/rawhide/Everything/x86_64/os/* .
-# rm -rf repo*
-
-# appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
-# --packages-dir=./Packages/ --temp-dir=./tmp/ --output-dir=./appstream-data/ \
-# --basename="rpmfusion-nonfree-26" --origin="rpmfusion-nonfree-26" \
-# --enable-hidpi
-
-# cp appstream-data/* ~/rpmbuild/SOURCES/
 Source0:    %{reponame}-%{repoversion}-%{version}.xml.gz
 Source1:    %{reponame}-%{repoversion}-%{version}-icons.tar.gz
-#Source2:   %{reponame}-%{repoversion}-%{version}-screenshots.tar
+Source2:    update-appdata-rpmfusion-nonfree.sh
 
 BuildRequires:  libappstream-glib
 Supplements:    appstream-data
@@ -51,6 +39,9 @@ DESTDIR=%{buildroot} appstream-util install %{SOURCE0} %{SOURCE1}
 %dir %{_datadir}/app-info/xmls
 
 %changelog
+* Mon Nov 13 2017 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 28-1
+- Update appdata
+
 * Sun Jul 09 2017 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 26-2
 - Regenerate and update
 
