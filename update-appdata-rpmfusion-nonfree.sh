@@ -12,11 +12,11 @@ main ()
 
     fi
 
-    rsync -avPh "$URL" .
+    rsync -avPh "$URL" ./Packages/
     rm -rf repo*
 #
     appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
-    --packages-dir=./ --temp-dir=./tmp/ --output-dir=./appstream-data/ \
+    --packages-dir=./Packages/ --temp-dir=./tmp/ --output-dir=./appstream-data/ \
     --basename="rpmfusion-nonfree-el$RELEASE" --origin="rpmfusion-nonfree-el$RELEASE" \
     --enable-hidpi
 
