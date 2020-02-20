@@ -2,7 +2,7 @@
 %global     repoversion nonfree
 
 Name:       %{reponame}-%{repoversion}-appstream-data
-Version:    32
+Version:    33
 Release:    1%{?dist}
 Summary:    Appstream metadata for the RPM Fusion nonfree repository
 BuildArch:  noarch
@@ -39,6 +39,9 @@ DESTDIR=%{buildroot} appstream-util install %{SOURCE0} %{SOURCE1}
 %dir %{_datadir}/app-info/xmls
 
 %changelog
+* Thu Feb 20 2020 Leigh Scott <leigh123linux@gmail.com> - 33-1
+- Update for rawhide
+
 * Sun Oct 27 2019 Leigh Scott <leigh123linux@gmail.com> - 32-1
 - Update for rawhide
 
