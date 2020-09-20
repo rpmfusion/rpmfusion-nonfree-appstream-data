@@ -30,7 +30,7 @@ main ()
 #    repomanage -o --space  ./Packages/ | xargs rm
 #    rm -rf Packages/repo*
 #
-    appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
+    appstream-builder --verbose  --include-failed --max-threads=6 --log-dir=./logs/ \
     --packages-dir=./Packages/ --temp-dir=./tmp/ --output-dir=./appstream-data/ \
     --basename="rpmfusion-nonfree-$RELEASE" --origin="rpmfusion-nonfree-$RELEASE" \
     --enable-hidpi --veto-ignore=missing-parents
