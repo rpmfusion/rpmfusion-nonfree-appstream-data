@@ -43,7 +43,7 @@ usage ()
     echo "$0 -r <release>"
     echo "- update appdata for rpmfusion nonfree repository"
     echo "options:"
-    echo "-r <release> one of 30, 31, 32 and 33"
+    echo "-r <release> one of 31, 32, 33 and 34"
 }
 
 
