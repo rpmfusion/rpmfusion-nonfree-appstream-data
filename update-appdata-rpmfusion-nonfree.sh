@@ -21,7 +21,7 @@ main ()
 
     fi
 
-    #rsync -avPh "$URL" .
+    rsync -avPh "$URL" .
 #    rsync -avPh --exclude debug "$URL1" ./Packages/
 
     rm -rf repo*
