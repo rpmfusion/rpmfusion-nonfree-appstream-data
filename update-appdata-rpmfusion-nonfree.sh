@@ -1,30 +1,39 @@
 #!/bin/bash
 RELEASE=""
 URL=""
+#URL1=""
 
 main ()
 {
     mkdir rpmfusion-nonfree/ -pv
     cd rpmfusion-nonfree || exit -1
 #
-    if [ "$RELEASE" =  "33" ]; then
+    if [ "$RELEASE" =  "34" ]; then
         URL="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/rawhide/Everything/x86_64/os/*"
-    elif [ "$RELEASE" = "32" ]; then
+    elif [ "$RELEASE" = "33" ]; then
+        URL="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/33/Everything/x86_64/os/*"
+    elif [ "$RELEASE" =  "32" ]; then
         URL="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/32/Everything/x86_64/os/*"
-    elif [ "$RELEASE" =  "31" ]; then
-        URL="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/development/31/Everything/x86_64/os/*"
-    elif [ "$RELEASE" = "30" ]; then
-        URL="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/releases/30/Everything/x86_64/os/*"
+        #URL1="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/updates/32/x86_64/*"
+    elif [ "$RELEASE" = "31" ]; then
+        URL="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/releases/31/Everything/x86_64/os/*"
+        #URL1="rsync://rsync.mirrorservice.org/download1.rpmfusion.org/nonfree/fedora/updates/31/x86_64/*"
 
     fi
 
-    rsync -avPh "$URL" .
+    #rsync -avPh "$URL" .
+#    rsync -avPh --exclude debug "$URL1" ./Packages/
+
     rm -rf repo*
+#    rm -rf Packages/repo*
+#    createrepo -d Packages/
+#    repomanage -o --space  ./Packages/ | xargs rm
+#    rm -rf Packages/repo*
 #
     appstream-builder --verbose --max-threads=6 --log-dir=./logs/ \
     --packages-dir=./Packages/ --temp-dir=./tmp/ --output-dir=./appstream-data/ \
     --basename="rpmfusion-nonfree-$RELEASE" --origin="rpmfusion-nonfree-$RELEASE" \
-    --enable-hidpi
+    --enable-hidpi --veto-ignore=missing-parents
 
     echo "Generated files are present in the appstream-data directory"
 }
