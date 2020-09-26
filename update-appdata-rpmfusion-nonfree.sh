@@ -13,7 +13,7 @@ main ()
     elif [ "$RELEASE" = "33" ]; then
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/33/Everything/x86_64/os/*"
     elif [ "$RELEASE" =  "32" ]; then
-        URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/32/Everything/x86_64/os/*"
+        URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/32/Everything/x86_64/os/*"
         #URL1="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/updates/32/x86_64/*"
     elif [ "$RELEASE" = "31" ]; then
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/31/Everything/x86_64/os/*"
