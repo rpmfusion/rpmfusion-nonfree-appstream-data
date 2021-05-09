@@ -1,7 +1,7 @@
 #!/bin/bash
 RELEASE=""
 URL=""
-#URL1=""
+URL1=""
 
 main ()
 {
@@ -12,20 +12,21 @@ main ()
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/rawhide/Everything/x86_64/os/*"
     elif [ "$RELEASE" = "34" ]; then
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/34/Everything/x86_64/os/*"
+        URL1="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/updates/34/x86_64/*"
     elif [ "$RELEASE" =  "33" ]; then
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/33/Everything/x86_64/os/*"
         #URL1="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/updates/33/x86_64/*"
     fi
 
     rsync -avPh --delete "$URL" .
-#    rsync -avPh --delete --exclude debug "$URL1" ./Packages/
+    rsync -avPh --exclude debug "$URL1" ./Packages/
 
     rm -rf repo*
-#    rm -rf Packages/repo*
-#    createrepo -d Packages/
-#    repomanage -o --space  ./Packages/ | xargs rm
-#    rm -rf Packages/repo*
-#
+    rm -rf Packages/repo*
+    createrepo -d Packages/
+    repomanage -o --space  ./Packages/ | xargs rm
+    rm -rf Packages/repo*
+
     appstream-builder --verbose  --include-failed --max-threads=6 --log-dir=./logs/ \
     --packages-dir=./Packages/ --temp-dir=./tmp/ --output-dir=./appstream-data/ \
     --basename="rpmfusion-nonfree-$RELEASE" --origin="rpmfusion-nonfree-$RELEASE" \
