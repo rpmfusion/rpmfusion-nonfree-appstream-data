@@ -8,12 +8,12 @@ main ()
     mkdir rpmfusion-nonfree/ -pv
     cd rpmfusion-nonfree || exit -1
 #
-    if [ "$RELEASE" =  "35" ]; then
+    if [ "$RELEASE" =  "36" ]; then
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/rawhide/Everything/x86_64/os/*"
-    elif [ "$RELEASE" = "34" ]; then
+    elif [ "$RELEASE" = "35" ]; then
+        URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/35/Everything/x86_64/os/*"
+    elif [ "$RELEASE" =  "34" ]; then
         URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/34/Everything/x86_64/os/*"
-    elif [ "$RELEASE" =  "33" ]; then
-        URL="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/33/Everything/x86_64/os/*"
         #URL1="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/updates/33/x86_64/*"
     fi
 
@@ -39,7 +39,7 @@ usage ()
     echo "$0 -r <release>"
     echo "- update appdata for rpmfusion nonfree repository"
     echo "options:"
-    echo "-r <release> one of 33, 34 and 35"
+    echo "-r <release> one of 34, 35 and 36"
 }
 
 
