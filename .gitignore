@@ -17,3 +17,7 @@ tags
 /rpmfusion-nonfree-34.xml.gz
 /rpmfusion-nonfree-36-icons.tar.gz
 /rpmfusion-nonfree-36.xml.gz
+/rpmfusion-nonfree-rawhide-icons.tar.gz
+/rpmfusion-nonfree-rawhide.xml.gz
+
+rpmfusion-nonfree/
