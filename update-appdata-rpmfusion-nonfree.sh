@@ -7,16 +7,17 @@ TEMPDIR="rpmfusion-nonfree"
 
 main ()
 {
-    rm -rf rpmfusion-nonfree
-    mkdir rpmfusion-nonfree/ -pv
-    cd rpmfusion-nonfree || exit -1
+    rm -rf "$TEMPDIR"
+    mkdir "$TEMPDIR/" -pv
+    cd "$TEMPDIR" || exit -1
 
     if [ $RELEASE -le $RAWHIDE ] && [ $RELEASE -ge $((RAWHIDE - 3)) ]; then
-        if [ "$RELEASE" = "$RAWHIDE" ]; then
-            RELEASE="rawhide"
+        if [ "$RELEASE" == "$RAWHIDE" ]
+        then
+            URL_DEV="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/rawhide/Everything/x86_64/os/*"
+        else
+            URL_DEV="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/${RELEASE}/Everything/x86_64/os/*"
         fi
-
-        URL_DEV="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/development/${RELEASE}/Everything/x86_64/os/*"
         URL_RELEASE="rsync://download1.rpmfusion.org/rpmfusion/nonfree/fedora/releases/${RELEASE}/Everything/x86_64/os/*"
 
         echo "Regenerating for $RELEASE"
@@ -40,6 +41,9 @@ main ()
     echo "Generated files are present in the appstream-data directory"
     echo "To import new sources, run:"
     echo "rfpkg new-sources ${TEMPDIR}/appstream-data/rpmfusion-nonfree-${RELEASE}-icons.tar.gz ${TEMPDIR}/appstream-data/rpmfusion-nonfree-${RELEASE}.xml.gz"
+
+    echo "To bump the spec:"
+    echo "rpmdev-bumpspec -c 'Regenerate' rpmfusion-nonfree-appstream-data.spec"
 
 }
 
