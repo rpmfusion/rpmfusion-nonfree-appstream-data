@@ -3,7 +3,7 @@
 
 Name:       %{reponame}-%{repoversion}-appstream-data
 Version:    37
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Appstream metadata for the RPM Fusion nonfree repository
 BuildArch:  noarch
 
@@ -39,6 +39,9 @@ DESTDIR=%{buildroot} appstream-util install %{SOURCE0} %{SOURCE1}
 %dir %{_datadir}/app-info/xmls
 
 %changelog
+* Mon Apr 25 2022 Ankur Sinha <sanjay.ankur@gmail.com> - 37-2
+- Regenerate
+
 * Mon Feb 28 2022 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 37-1
 - Regenerate for F37
 
