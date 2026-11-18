@@ -8,7 +8,9 @@ main ()
 
     if [ "$RELEASE" == "master" ] || [ "$RELEASE" == "rawhide" ] || [ "$RELEASE" == "main" ]
     then
-        RELEASE=$RAWHIDE
+        RELEASE="$RAWHIDE"
+    else
+        RELEASE="${RELEASE:1}"
     fi
 
     echo "Current release is: $RELEASE"
@@ -17,9 +19,10 @@ main ()
     URL_RELEASE=""
     TEMPDIR="rpmfusion-$TYPE"
 
+
     rm -rf "$TEMPDIR"
     mkdir "$TEMPDIR" -pv
-    cd "$TEMPDIR" || exit -1
+    cd "$TEMPDIR" || exit 1
 
     if [ $RELEASE -le $RAWHIDE ] && [ $RELEASE -ge $((RAWHIDE - 3)) ]; then
         if [ "$RELEASE" == "$RAWHIDE" ]
@@ -34,7 +37,7 @@ main ()
         rsync -avPh "$URL_RELEASE" . || rsync -avPh "$URL_DEV" .
     else
         echo "Please check if ${RELEASE} is currently supported. Rawhide is at ${RAWHIDE}."
-        exit -1
+        exit 1
     fi
 
     if ! command -v appstream-builder > /dev/null
@@ -53,7 +56,7 @@ main ()
     echo "rfpkg new-sources ${TEMPDIR}/appstream-data/rpmfusion-$TYPE-${RELEASE}-icons.tar.gz ${TEMPDIR}/appstream-data/rpmfusion-$TYPE-${RELEASE}.xml.gz"
 
     echo "To bump the spec:"
-    echo "rpmdev-bumpspec -c "Regenerate" rpmfusion-$TYPE-appstream-data.spec"
+    echo "rpmdev-bumpspec -c \"Regenerate\" rpmfusion-$TYPE-appstream-data.spec"
 
 }
 
